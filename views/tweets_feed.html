@@ -1,0 +1,70 @@
+% include("header", title="Feed")
+
+<main>
+    <section id="aside_left">
+        <div id="options">
+            <h2>Content Here</h2>
+        </div>
+    </section>
+
+    <div class="feed">
+    <h1>This is what happens in the world right now</h1>
+    <div class="tweet_wrapper">
+        <form onsubmit="validate(postTweet); return false " class="">
+            <div>
+                <div id="buildMain">
+            <label for="tweet_text">Tweet It!</label>
+            <textarea class="" type="text" name="tweet_text" id="tweet_text" placeholder="Share your thoughts here" data-validate="str" data-min="1" data-max="400"></textarea>
+            </div>
+            <div id="upload_image" class="">
+            <label for="upload_image" class="">Upload Image</label>
+            <input type="file" id="upload_image" name="tweet_image" accept="image">
+            </div>
+            <div>
+            <button class="uploadBTN">Post</button>
+            </div>
+        </div>
+        </form>
+    </div>
+
+        % if tweets == []:
+            <div>
+            <p>
+    Nothing was posted today
+</p>
+            </div>
+            % end
+
+            <div id="tweets" >
+                %for tweet in tweets: 
+                <section id="${tweet_id}" class="tweet">
+                    <div class="">{{tweet["iat"]}}</div>
+                    <div class="">{{tweet["user_firstname"]}}</div>
+                    <div class="">{{tweet["user_lastname"]}}</div>
+                    <p class="">{{tweet["text"]}}</p>
+                    <article id="btn_holder" >
+                        <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
+                        <button>✏️</button>
+                    </article>
+                </section>
+                %end
+                </div>
+    </div>
+
+<div id="search">
+    <label for="site-search">Search for tweets:</label>
+    <input type="search" id="site-search" name="q">
+    
+    <button>Search</button>
+    
+</div>
+
+    <section id="aside_right">
+        <div>
+            <h2>Content here</h2>
+        </div>
+    </section>
+        
+</main>
+
+% include("footer")

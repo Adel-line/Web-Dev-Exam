@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap');
+
+* {
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    border: 2px;
+    background-color: #9CB2CE;
+}
+
+/*INTRO PAGE*/
+
+#intro {
+    margin: 10vw;
+}
+
+#intro h1 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3vw;
+    font-weight: 400;
+}
+
+#intro h2 {
+    padding-top: 2vw;
+    font-family: 'Roboto', sans-serif;
+    font-size: 4vw;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 5vw;
+}
+
+#intro a {
+    font-size: 3vw;
+    font-weight: 400;
+    height: auto;
+    margin-left: 35vw;
+    padding: 1vw;
+    text-decoration: none;
+    border: transparent;
+    border-radius: 5px;
+}
+
+/*NAVIGATION STYLE*/
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: white;
+}
+
+.logo {
+height: auto;
+width: 3vw;
+}
+
+nav {
+    height: 4vw;
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgb(255, 255, 255);
+}
+
+a {
+    font-family: 'Roboto', sans-serif;
+    align-self: baseline;
+    background-color: #29487D;
+    font-size: 1vw;
+    font-weight: 400;
+    color: white;
+    padding: 0.5vw;
+    height: auto;
+    margin: 1vw;
+    text-decoration: none;
+    border: transparent;
+    border-radius: 5px;
+}
+
+nav a :hover {
+    background-color: reds;
+
+}
+
+nav button {
+    height: auto;
+    margin-left: 1vw;
+}
+
+/*Typography*/
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5vw;
+    font-weight: 400;
+} 
+
+.feed h1 {
+    text-align: center;
+}
+
+.feed p {
+    text-align: center;
+    margin-top: 3vw;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1vw;
+    font-weight: 400;
+}
+
+/*Buttons*/
+
+.signupBTN {
+    background-color: #29487D;
+    padding: 0.5vw;
+    color: white;
+    border: transparent;
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.loginBTN {
+    background-color: #29487D;
+    padding: 0.5vw;
+    color: white;
+    border: transparent;
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.uploadBTN {
+    background-color: #29487D;
+    padding: 0.5vw;
+    color: white;
+    border: transparent;
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+/*Form*/
+
+form {
+    margin-left: 1.5vw;
+}
+.tweet_wrapper {
+    height: auto;
+    width: 30vw;
+    background-color: white;
+    padding: 1vw;
+    border-radius: 10px;
+    margin-top: 2vw;
+    margin-left: 5vw;
+}
+
+.login_wrapper {
+    height: auto;
+    width: 30vw;
+    background-color: white;
+    padding: 3vw;
+    border-radius: 10px;
+    margin-top: 15vw;
+    margin-left: 35vw;
+}
+
+.signup_wrapper {
+    height: auto;
+    width: 30vw;
+    background-color: white;
+    padding: 3vw;
+    border-radius: 10px;
+    margin-top: 15vw;
+    margin-left: 35vw;
+}
+
+.signup2_wrapper {
+    height: auto;
+    width: 34vw;
+    background-color: darkblue;
+    color: white;
+    padding: 3vw;
+    border-radius: 10px;
+    margin-top: 5vw;
+    margin-left: 35vw;
+
+}
+
+/*Form Inputs*/
+
+label {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin-bottom: 0.5vw;
+
+}
+
+input {
+    font-family: 'Roboto', sans-serif;
+    background-color: #efefef;
+    margin-bottom: 1vw;
+    height: 2.5vw;
+    width: 20vw;
+    border-radius: 5px;
+    border: transparent;
+    -webkit-box-shadow: -5px 6px 15px -5px #000000; 
+box-shadow: -3px 3px 7px -4px #000000;
+}
+
+#upload_image input {
+    height: 1.6vw;
+    width: 15vw;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 25vw;
+    height: 8vw;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/*Sections*/
+
+#tweets {
+height: 100vw;
+width: 100%;
+}
+
+#tweets section {
+    background-color: red;
+    border-radius: 0.5vw;
+    margin: 2vw;
+    padding: 1vw;
+}
+
+#aside_left {
+    position: absolute;
+    width: 20vw;
+    height: 40vw;
+    background-color: #FEFEFE;
+    border-radius: 5px;
+    margin-left: 5vw;
+    margin-top: 2vw;
+}
+
+#aside_right {
+    position: absolute;
+    width: 20vw;
+    height: 40vw;
+    background-color: #FEFEFE;
+    border-radius: 5px;
+    margin-left: 75vw;
+    margin-top: 10vw;
+}
+
+#search {
+    position: absolute;
+    width: 20vw;
+    height: auto;
+    margin-left: 75vw;
+    margin-top: 2vw;
+}
+
+.feed {
+    position: absolute;
+    width: 40vw;
+    height: auto;
+    margin-left: 30vw;
+    margin-top: 2vw;
+}
+
+/*GLOBAL FEED*/
+
+.global_feed {
+    position: absolute;
+    width: 40vw;
+    height: auto;
+    margin-left: 30vw;
+    margin-top: 2vw;
+}
+
+.global_feed section {
+    background-color: #29487D;
+    margin-bottom: 3vw;
+    border-radius: 1vw;
+    padding: 1vw;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+}
+
+.global_feed section p {
+    font-size: 2vw;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin: 2vw;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.userName {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+/*Admin*/
+
+.admin_login_wrapper {
+    height: auto;
+    width: 30vw;
+    background-color: darkblue;
+    color: white;
+    padding: 3vw;
+    border-radius: 10px;
+    margin-top: 5vw;
+    margin-left: 35vw;
+}
+
+.admin_login_wrapper h1 {
+    text-align: center;
+    font-size: 2vw;
+    margin-bottom: 2vw;
+}

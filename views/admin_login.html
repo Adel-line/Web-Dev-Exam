@@ -1,0 +1,31 @@
+% include("header", title="FKTwitter")
+
+<main>
+<h1>
+    Welcome Admin
+</h1>
+<div class="admin_login_wrapper">
+    <form action="/admin_login" method="Post">
+        <div>
+        % if error == "admin_email":
+            <h1>Please enter a valid email</h1>
+        %end
+
+        <label>Email</label>
+        <input type="text" name="admin_email" placeholder="Email" id="emailinput">
+    </div>
+    <div>
+        % if error == "admin_password":
+            <h1>Please enter a valid password</h1>
+        %end
+
+        <label>Password</label>
+        <input type="password" name="admin_password" placeholder="Password" id="passwordinput">
+    </div>
+            <button class="loginBTN">LogIn</button>
+    </form>
+    
+</div>
+</main>
+
+% include("footer")
