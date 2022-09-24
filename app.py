@@ -1,4 +1,4 @@
-from bottle import run, get, post, view, static_file, request, redirect
+from bottle import run, get, post, view, static_file, request, redirect, default_app
 
 ######################################################
 
