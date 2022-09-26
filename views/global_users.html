@@ -17,20 +17,27 @@
             %for tweet in tweets:
             
             % if tweet["user_id"] == user["user_id"]:
+
+            %if tweet['image']:
+
             <section id="${tweet_id}" class="tweet">
-                <div class="userInfo">     
-                    <div class="">{{tweet["iat"]}}</div>
-                        <div class="userName"> 
-                            <div class="">{{tweet["user_firstname"]}}</div>
-                            <div class="">{{tweet["user_lastname"]}}</div>
-                        </div>
-                </div>
+                <div class="">{{tweet["iat"]}}</div>
+                <div class="">{{tweet["user_firstname"]}}</div>
+                <div class="">{{tweet["user_lastname"]}}</div>
                 <p class="">{{tweet["text"]}}</p>
-                <article id="btn_holder" >
-                    <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
-                    <button>✏️</button>
-                </article>
+                <img src="/images/{{tweet['image']}}" alt="">
             </section>
+
+            % else: 
+
+
+            <section id="${tweet_id}" class="tweet">
+                <div class="">{{tweet["iat"]}}</div>
+                <div class="">{{tweet["user_firstname"]}}</div>
+                <div class="">{{tweet["user_lastname"]}}</div>
+                <p class="">{{tweet["text"]}}</p>
+            </section>
+            %end
             %end
             %end
         </div>

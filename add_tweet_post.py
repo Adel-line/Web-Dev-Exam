@@ -3,6 +3,7 @@ import uuid
 import g
 import jwt
 import time
+import os
 
 @post("/post_tweet") 
 def _():   
@@ -35,7 +36,51 @@ def _():
     print("adadadadadadaa")
 
     try : 
+
+        if request.files.get("tweet_image") :
+            image = request.files.get("tweet_image")
+            #clean image name
+            image_name = image.filename.strip().replace(" ", "-")
+            #download image in images folder
+            if image_name in os.listdir("./images"):
+                print ("File successfully saved")
+            else:
+                print ("File not saved")
+                image.save(f"images/{image_name}")
+
+
+
+            encoded_jwt = request.get_cookie("jwt") 
+            print("adadadadadadaaX2")
+
+            tweet_text = request.forms.get("tweet_text")
+            userSession = jwt.decode(encoded_jwt, "theSecret", algorithms="HS256")
+            generated_time = time.ctime(int(time.time()))
+            print(userSession["user_session_id"])
+            tweet_id = str(uuid.uuid4())
+            tweet = {
+            "user_id": userSession["user_id"],
+            "id": tweet_id,
+            "user_firstname": userSession["user_firstname"],
+            "user_lastname": userSession["user_lastname"],
+            "user_email": userSession["user_email"],
+            "image": image_name,
+            "text": tweet_text,
+            "iat": generated_time
+            }
+
+            g.TWEETS.append(tweet)
+
+            is_image = "true"
+            response.status = 200
+            return dict( tweet = tweet, is_image = is_image)
+
+
+
+###########################################################################################
+
         print("adadadadadadaa")
+        is_image = "false"
         encoded_jwt = request.get_cookie("jwt") 
         print("adadadadadadaaX2")
         tweet_text = request.forms.get("tweet_text")
@@ -50,6 +95,7 @@ def _():
             "user_lastname": userSession["user_lastname"],
             "user_email": userSession["user_email"],
             "text": tweet_text,
+            "image": "",
             "iat": generated_time
         }
         
@@ -57,7 +103,7 @@ def _():
         g.TWEETS.append(tweet)
 
         #RESPONSE
-        return dict(tweet = tweet, tweet_image = "false")
+        return dict(tweet = tweet, is_image = is_image)
 
     except Exception as ex:
         print(ex)
@@ -65,16 +111,3 @@ def _():
         response.status = 500
         return {"info":"upsss.... something went wrong"}
 
-    #QUERY
-    # tweet_id = str(uuid.uuid4())
-    # tweet = {
-    #     "id": tweet_id,
-    #     "user_firstname": user_firstname,
-    #     "user_lastname": user_lastname,
-    #     "user_name": user_name,
-    #     "text": tweet_text
-    # }
-
-    # g.TWEETS.append(tweet)
-    #RESPONSE
-    # return tweet_id

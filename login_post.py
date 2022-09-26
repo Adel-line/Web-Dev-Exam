@@ -10,16 +10,9 @@ import jwt
 def _(): 
     if not request.forms.get("user_email"):
         return redirect ("/login?error=user_email")
-    if not re.match( g.regex_email, request.forms.get("user_email")):
-        return redirect ("/login?error=user_email")
+    
     user_email = request.forms.get("user_email")
 
-    if not request.forms.get("user_password"):
-        return redirect (f"/login?error=user_password&user_email={user_email}")
-    if len(request.forms.get("user_password")) < 6:
-        return redirect (f"/login?error=user_password&user_email={user_email}")
-    if len(request.forms.get("user_password")) > 15:
-        return redirect (f"/login?error=user_password&user_email={user_email}")
     user_password = request.forms.get("user_password")
 
     for user in g.USERS:

@@ -3,10 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app.css">
+    <title>{{ get ("title", "Title unavailable")}}</title>
 </head>
+
 <body>
-    <h1>heloooo</h1>
-</body>
-</html>
+    <header>
+        <div id="navbar">
+            <div class="logo">
+                <img src="/images/one.png" alt="applogo"/>
+            </div>
+            <nav>
+                <a id="logoutBTN" href="/logout">Log Out</a>
+            </nav>
+    </header>
+<main>
+    <section id="aside_left">
+        <div id="options">
+            <h2>Content Here</h2>
+        </div>
+    </section>
+
+    <div class="global_feed">
+    <h1>This is what happens in the world right now</h1>
+
+    %for user in users: 
+    <div>
+    <p>{{user["user_firstname"]}}</p>
+
+        <div>
+            %for tweet in tweets:
+            
+            <section id="{{tweet['id']}}"  class="tweet">
+                <div class="userInfo">     
+                    <div class="">{{tweet["iat"]}}</div>
+                        <div class="userName"> 
+                            <div class="">{{tweet["user_firstname"]}}</div>
+                            <div class="">{{tweet["user_lastname"]}}</div>
+                        </div>
+                </div>
+                <p class="">{{tweet["text"]}}</p>
+                <article id="btn_holder" >
+                    <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
+                </article>
+
+            </section>
+            
+            %end
+        </div>
+    </div>
+    %end
+    </div>
+
+<div id="search">
+    <label for="site-search">Search for tweets:</label>
+    <input type="search" id="site-search" name="q">
+    <button>Search</button>
+    
+</div>
+
+    <section id="aside_right">
+        <div>
+            <h2>Content here</h2>
+        </div>
+    </section>
+        
+</main>
+
+% include("footer")

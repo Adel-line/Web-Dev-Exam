@@ -18,29 +18,42 @@ async function postTweet() {
 
     console.log(await connection);
     const connection_text = await connection.text(); //TWEET ID
-    const tweet_object = JSON.parse(connection_text);
-    console.log(tweet_object);
-    // const tweet_id = connection_text.slice(0, 36);
-    // const tweet_image = connection_text.slice(26, 40);
-    // const tweet_iat = connection_text.slice(40)
-    // console.log(connection_text, tweet_id, tweet_image, tweet_iat);
 
-    //const image_path = _one("input[type=file]", form).value.replaceAll(" ", "-").trim()
+    const tweet_object = JSON.parse(connection_text);
+    
+    console.log(tweet_object);
     
     let tweet = ''
 
-    if (tweet_object.tweet_image == "true") {
+    if (tweet_object.tweet.image ) {
     tweet = `
-        <section class="tweet" id="${tweet_object.tweet.id}">
-            <p class="tweet_time">${tweet_object.tweet.iat}</p>
-            <p class="">yes i am</p>
-            <article >
-            <button onclick="openModuleUpdate('${tweet_object.tweet.id}','true' ,'' , '/image/${image_path.substring(image_path.lastIndexOf("\\") + 1)}')">✏️</button>
-            </article>
-            <img src="/image/${image_path.substring(image_path.lastIndexOf("\\") + 1)}" alt="">
-        </section>
+    <section class="tweet" id="${tweet_object.tweet.id}">
+
+    <article>
+    <div class="">${tweet_object.tweet.iat}</div>
+    <div class="">${tweet_object.tweet.user_firstname}</div>
+    <div class="">${tweet_object.tweet.user_lastname}</div>
+    <p class="">${tweet_object.tweet.text}</p>
+    <img src="/images/${tweet_object.tweet.image}" alt="">
+
+    <div class="">
+    <i onclick="delete_tweet('${tweet_object.tweet.id}')" class="fas fa-trash ml-auto"></i>
+    <i class="fa-solid fa-message"></i>
+    <i class="fa-solid fa-heart"></i>
+    <i class="fa-solid fa-retweet"></i>
+    <i class="fa-solid fa-share-nodes"></i>
+</div>
+    <button onclick="delete_tweet('${tweet_object.tweet.id}')">🗑️</button>
+    <button onclick="open_modal('${tweet_object.tweet.text}' ,'${tweet_object.tweet.id}', 'true' , '/images/${tweet_object.tweet.image}')">✏️</button>
+    
+    </article>
+
+</section>
         `
+        _one("input", form).value = ""  
+    _one("#tweets").insertAdjacentHTML("afterbegin", tweet)
     } else {
+
         tweet = `
         <section class="tweet" id="${tweet_object.tweet.id}">
 
@@ -57,14 +70,13 @@ async function postTweet() {
         <i class="fa-solid fa-share-nodes"></i>
     </div>
         <button onclick="delete_tweet('${tweet_object.tweet.id}')">🗑️</button>
-        <button onclick="openModuleUpdate('${tweet_object.tweet.id}','false' ,'${tweet_object.tweet.text}')">✏️</button>
+        <button onclick="open_modal('${tweet_object.tweet.text}' ,'${tweet_object.tweet.id}', 'false' )">✏️</button>
         
         </article>
 
     </section>
     `
     _one("input", form).value = ""  
-
     _one("#tweets").insertAdjacentHTML("afterbegin", tweet)
 
 }
@@ -83,6 +95,87 @@ async function delete_tweet(tweet_id){
     
         document.querySelector(`[id='${tweet_id}']`).remove()
     }
-    
 
+function open_modal(tweet_text, tweet_id , is_image , imagePath) {
+console.log(tweet_text, tweet_id , is_image , imagePath);
+
+//updating image 
+
+if(is_image === "true") {
+
+    document.querySelector("input[type=text]").value = tweet_id;
+    document.querySelector(".modal_container").style.display = "block";
+    document.getElementById("update_text").value = tweet_text;
+    document.querySelector(".cancelBTN").addEventListener("click", closeModal);
+
+    document.querySelector("#updated_image").setAttribute("src", imagePath);
+
+} else if (is_image === "false") {
+    document.querySelector("#image_update_container").style.display = "none";
+
+}
+
+document.querySelector("input[type=text]").value = tweet_id;
+document.querySelector(".modal_container").style.display = "block";
+document.getElementById("update_text").value = tweet_text;
+document.querySelector(".cancelBTN").addEventListener("click", closeModal);
+
+}
+
+function closeModal() {
+    document.querySelector(".modal_container").style.display = "none";
+
+}
+
+async function updateTweet() {
+    console.log("hahahahaha")
+
+    const form = event.target
+    //FETCH BTN, set data-await
+    console.log("yesyesyes")
+    const connection = await fetch("/update", {
+        method: "PUT",
+        body: new FormData(form)
+    })
+
+    if (!connection.ok) {
+        return
+    }
+
+    const connection_text = await connection.text(); //TWEET ID
+    const tweet_object = JSON.parse(connection_text);
+    
+    _one("#tweets").innerHTML = "";
+    tweet_object.tweets.forEach(tweet => {
+        if (tweet_object.user_id == tweet.user_id) {
+            const updated_tweet = 
+            `
+            <section class="tweet" id="${tweet.id}">
+
+            <article>
+            <div class="">${tweet.iat}</div>
+            <div class="">${tweet.user_firstname}</div>
+            <div class="">${tweet.user_lastname}</div>
+            <p class="">${tweet.text}</p>
+            <div class="">
+            <i onclick="delete_tweet('${tweet.id}')" class="fas fa-trash ml-auto"></i>
+            <i class="fa-solid fa-message"></i>
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-retweet"></i>
+            <i class="fa-solid fa-share-nodes"></i>
+        </div>
+            <button onclick="delete_tweet('${tweet.id}')">🗑️</button>
+            <button onclick="open_modal('${tweet.id}','false' ,'${tweet.text}')">✏️</button>
+            
+            </article>
+    
+        </section>
+        `
+
+        _one("#tweets").insertAdjacentHTML("afterbegin", updated_tweet);
+        _one(".modal_container").style.display = "none";
+
+        }
+    });
+}
 

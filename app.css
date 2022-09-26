@@ -36,11 +36,17 @@ body {
     font-size: 3vw;
     font-weight: 400;
     height: auto;
-    margin-left: 35vw;
+    margin-left: 3vw;
     padding: 1vw;
     text-decoration: none;
     border: transparent;
     border-radius: 5px;
+}
+
+.access {
+    display: flex;
+    flex-direction: row;
+    margin-left: 12vw;
 }
 
 /*NAVIGATION STYLE*/
@@ -276,6 +282,34 @@ width: 100%;
     margin-top: 2vw;
 }
 
+/*Modal*/
+
+.modal {
+    position: absolute;
+    z-index: 1000;
+    height: auto;
+    width: 30vw;
+    background-color:#29487D;
+    color: #efefef;
+    padding: 1vw;
+    border-radius: 10px;
+    top: 25vw;
+    left: 35vw;
+    opacity: 100%;
+}
+
+.modal_container {
+    display: none;
+    backdrop-filter: blur(6px);
+    width: 100vw;
+    height: 100vh;
+}
+
+.cancelBTN{
+    cursor: pointer;
+}
+
+
 /*GLOBAL FEED*/
 
 .global_feed {
@@ -315,6 +349,12 @@ width: 100%;
     justify-content: space-around;
 }
 
+/*IMAGES*/
+
+img {
+    height: auto;
+    width: 30vw;
+}
 
 /*Admin*/
 
