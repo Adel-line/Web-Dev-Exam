@@ -21,6 +21,7 @@ def _():
     encoded_jwt = request.get_cookie("jwt") 
     userSession = jwt.decode(encoded_jwt, "theSecret", algorithms="HS256")
 
+
     
         
-    return dict(tweets=g.TWEETS, user_id = userSession["user_id"])
+    return dict(tweets=g.TWEETS, followees=g.FOLLOWEES, user_id = userSession["user_id"])

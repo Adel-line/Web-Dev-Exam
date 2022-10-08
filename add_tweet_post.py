@@ -20,18 +20,6 @@ def _():
         response.status = 400
         redirect("/signUp")
 
-#VALIDATE TEXT
-    #tweet_text = request.forms.get("tweet_text")
-    #tweet_image = request.forms.get("tweet_image")
-    
-    # if not request.forms.get("tweet_text"):
-    #     response.status = 400
-    #     return redirect ("/tweets_feed")
-
-    # if len(tweet_text) < 1 or len(tweet_text) > 400:
-    #     response.status = 400
-    #     return "you have entered too many of no charaters"
-
 
     print("adadadadadadaa")
 

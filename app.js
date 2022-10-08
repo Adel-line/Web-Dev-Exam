@@ -179,3 +179,23 @@ async function updateTweet() {
     });
 }
 
+// FOLLOW FUNCTION 
+
+async function follow_user() {
+    const form = event.target
+    //FETCH BTN, set data-await
+    console.log("yesyesyes")
+    const connection = await fetch("/follow", {
+        method: "POST",
+        body: new FormData(form)
+    })
+    console.log("Yaaaassss bitch")
+    if (!connection.ok)
+    {
+        return
+    }
+
+    console.log(await connection);
+    const connection_text = await connection.text(); //TWEET ID
+    console.log(connection_text);
+}

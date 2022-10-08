@@ -14,6 +14,7 @@ def _():
     user_email = request.forms.get("user_email")
 
     user_password = request.forms.get("user_password")
+    #validation for password
 
     for user in g.USERS:
         if user_email == user["user_email"] and user_password == user["user_password"]:
