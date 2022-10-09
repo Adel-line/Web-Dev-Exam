@@ -199,3 +199,24 @@ async function follow_user() {
     const connection_text = await connection.text(); //TWEET ID
     console.log(connection_text);
 }
+
+// EMAIL 
+
+async function sendEMAIL() {
+    const form = event.target
+    //FETCH BTN, set data-await
+    console.log("Let's see")
+    const connection = await fetch("/signUp", {
+        method: "POST",
+        body: new FormData(form)
+    })
+    console.log("It's goods")
+    if (!connection.ok)
+    {
+        return
+    }
+
+    console.log(await connection);
+    const connection_text = await connection.text(); //TWEET ID
+    console.log(connection_text);
+}
