@@ -26,6 +26,7 @@ def _():
 
             ###############################
             encoded_jwt = jwt.encode(session, "theSecret", algorithm="HS256")
+            print(type(encoded_jwt))
             response.set_cookie("jwt", encoded_jwt)
 
             return redirect ("/tweets_feed")
