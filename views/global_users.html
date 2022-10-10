@@ -8,108 +8,95 @@
     </section>
 
     <div class="global_feed">
-    <h1>This is what happens in the world right now</h1>
+        <h1>This is what happens in the world right now</h1>
 
-    %for user in users: 
-    <div>
-        % if sessionID == user["user_id"]:
-        <div id="{{user['user_id']}}">
-            <p>{{user["user_firstname"]}}</p>
-        </div>
-        % else:
-        
-            % for relation in followees:
-            
-                % if user["user_id"] == relation["followee"] and sessionID == relation["follower"]:
-                
-                        <div id="{{user['user_id']}}">
-                            <p>{{user["user_firstname"]}}</p>
-                            <p>You're following this user</p>
-                        </div>
-                    
-                    
-                
-                %elif sessionID == relation["follower"] : 
-                q
-                %elif user["user_id"] == relation["followee"] : 
-                        g
-                %else : 
+        %for user in users:
 
 
-                    
-                        <div id="{{user['user_id']}}">
-                            <p>{{user["user_firstname"]}}</p>
-                            <form onsubmit="follow_user(); return false " class="">
-                                <input type="text" name="followee_id" class="followee" value="{{user['user_id']}}"></input>
-                                <input type="text" name="followee_name" class="followee" value="{{user['user_firstname']}}">
-                                <input type="submit">Follow</input>
-                            </form>
-                            nooooooo
-                        </div>
-                    
-                %end
+        % followed ="false"
 
-                
-            %end
-            %if  followees == [] :
+        %for followee in session["followees"] :
+        %if user["user_id"] == followee["followee"]:
+        % followed ="true"
+        %end
+        %end
+
+
+
+        <div>
+            % if session["user_id"] == user["user_id"]:
             <div id="{{user['user_id']}}">
                 <p>{{user["user_firstname"]}}</p>
+            </div>
+            % else:
+            <div id="{{user['user_id']}}">
+                <p>{{user["user_firstname"]}}</p>
+                %if session["followees"] == [] :
+
                 <form onsubmit="follow_user(); return false " class="">
                     <input type="text" name="followee_id" class="followee" value="{{user['user_id']}}"></input>
                     <input type="text" name="followee_name" class="followee" value="{{user['user_firstname']}}">
                     <input type="submit">Follow</input>
-                    yessss
                 </form>
+                %elif followed=="false":
+
+                {{followed}}
+                q
+                <form onsubmit="follow_user(); return false " class="">
+                    <input type="text" name="followee_id" class="followee" value="{{user['user_id']}}"></input>
+                    <input type="text" name="followee_name" class="followee" value="{{user['user_firstname']}}">
+                    <input type="submit">Follow</input>
+                </form>
+
+
+
+
+                %end
+
             </div>
-                    
+
             %end
-            
-        %end
-        <div>
-            %for tweet in tweets:
-            
-            % if tweet["user_id"] == user["user_id"]:
+            <div>
+                %for tweet in tweets:
 
-            %if tweet['image']:
+                % if tweet["user_id"] == user["user_id"]:
 
-            <section id="${tweet_id}" class="tweet">
-                <div class="">{{tweet["iat"]}}</div>
-                <div class="">{{tweet["user_firstname"]}}</div>
-                <div class="">{{tweet["user_lastname"]}}</div>
-                <p class="">{{tweet["text"]}}</p>
-                <img src="/images/{{tweet['image']}}" alt="">
-            </section>
+                %if tweet['image']:
 
-            % else: 
+                <section id="${tweet_id}" class="tweet">
+                    <div class="">{{tweet["iat"]}}</div>
+                    <div class="">{{tweet["user_firstname"]}}</div>
+                    <div class="">{{tweet["user_lastname"]}}</div>
+                    <p class="">{{tweet["text"]}}</p>
+                    <img src="/images/{{tweet['image']}}" alt="">
+                </section>
+
+                % else:
 
 
-            <section id="${tweet_id}" class="tweet">
-                <div class="">{{tweet["iat"]}}</div>
-                <div class="">{{tweet["user_firstname"]}}</div>
-                <div class="">{{tweet["user_lastname"]}}</div>
-                <p class="">{{tweet["text"]}}</p>
-            </section>
-            %end
-            %end
-            %end
+                <section id="${tweet_id}" class="tweet">
+                    <div class="">{{tweet["iat"]}}</div>
+                    <div class="">{{tweet["user_firstname"]}}</div>
+                    <div class="">{{tweet["user_lastname"]}}</div>
+                    <p class="">{{tweet["text"]}}</p>
+                </section>
+                %end
+                %end
+                %end
+            </div>
         </div>
-    </div>
-    %end
+        %end
     </div>
 
     <section id="aside_right">
         <div>Your curently following:</div>
-        % for relation in followees:
-        %if sessionID == relation["follower"]:
-        <div>
-            
-            <p>{{relation["followee_name"]}}</p>
+        %for followee in session["followees"] :
+        {{followee["followee_name"]}}
 
-        </div>
         %end
-        %end
+
     </section>
-        
+
 </main>
 
 

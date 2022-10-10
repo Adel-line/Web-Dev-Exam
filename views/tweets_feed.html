@@ -8,70 +8,73 @@
     </section>
 
     <div class="feed">
-    <h1>This is what happens in the world right now</h1>
-    <div class="tweet_wrapper">
-        <form onsubmit="validate(postTweet); return false " class="">
-            <div>
-                <div id="buildMain">
-            <label for="tweet_text">Tweet It!</label>
-            <textarea class="" type="text" name="tweet_text" id="tweet_text" placeholder="Share your thoughts here" data-validate="str" data-min="1" data-max="400"></textarea>
-            </div>
-            <div id="upload_image" class="">
-            <label for="upload_image" class="">Upload Image</label>
-            <input type="file" id="upload_image" name="tweet_image" accept="image">
-            </div>
-            <div>
-            <button class="uploadBTN">Post</button>
-            </div>
+        <h1>This is what happens in the world right now</h1>
+        <div class="tweet_wrapper">
+            <form onsubmit="validate(postTweet); return false " class="">
+                <div>
+                    <div id="buildMain">
+                        <label for="tweet_text">Tweet It!</label>
+                        <textarea class="" type="text" name="tweet_text" id="tweet_text"
+                            placeholder="Share your thoughts here" data-validate="str" data-min="1"
+                            data-max="400"></textarea>
+                    </div>
+                    <div id="upload_image" class="">
+                        <label for="upload_image" class="">Upload Image</label>
+                        <input type="file" id="upload_image" name="tweet_image" accept="image">
+                    </div>
+                    <div>
+                        <button class="uploadBTN">Post</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        </form>
-    </div>
 
         % if tweets == []:
-            <div>
+        <div>
             <p>
-    Nothing was posted today
-</p>
-            </div>
-            % end
+                Nothing was posted today
+            </p>
+        </div>
+        % end
 
-            <div id="tweets" >
-                
-                %for tweet in tweets: 
+        <div id="tweets">
 
-                %if tweet["user_id"] == user_id:
+            %for tweet in tweets:
 
-                %if tweet['image']:
+            %if tweet["user_id"] == user_id:
 
-                <section id="${tweet_id}" class="tweet">
-                    <div class="">{{tweet["iat"]}}</div>
-                    <div class="">{{tweet["user_firstname"]}}</div>
-                    <div class="">{{tweet["user_lastname"]}}</div>
-                    <p class="">{{tweet["text"]}}</p>
-                    <img src="/images/{{tweet['image']}}" alt="">
+            %if tweet['image']:
 
-                    <article id="btn_holder" >
-                        <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
-                        <button onclick="open_modal(`{{tweet['text']}}`,`{{tweet['id']}}`, `true`, `/images/{{tweet['image']}}`)">✏️</button>
-                    </article>
-                </section>
+            <section id="{{tweet['id']}}" class="tweet">
+                <div class="">{{tweet["iat"]}}</div>
+                <div class="">{{tweet["user_firstname"]}}</div>
+                <div class="">{{tweet["user_lastname"]}}</div>
+                <p class="">{{tweet["text"]}}</p>
+                <img src="/images/{{tweet['image']}}" alt="">
 
-                %else: 
+                <article id="btn_holder">
+                    <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
+                    <button
+                        onclick="open_modal(`{{tweet['text']}}`,`{{tweet['id']}}`, `true`, `/images/{{tweet['image']}}`)">✏️</button>
+                </article>
+            </section>
 
-                <section id="${tweet_id}" class="tweet">
-                    <div class="">{{tweet["iat"]}}</div>
-                    <div class="">{{tweet["user_firstname"]}}</div>
-                    <div class="">{{tweet["user_lastname"]}}</div>
-                    <p class="">{{tweet["text"]}}</p>
-                    <article id="btn_holder" >
-                        <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
-                        <button onclick="open_modal(`{{tweet['text']}}`,`{{tweet['id']}}`, `false`)">✏️</button>
-                    </article>
-                </section>
-                %end
-                %end
-                %end
-                </div>
+            %else:
+
+            <section id="{{tweet['id']}}" class="tweet">
+                <div class="">{{tweet["iat"]}}</div>
+                <div class="">{{tweet["user_firstname"]}}</div>
+                <div class="">{{tweet["user_lastname"]}}</div>
+                <p class="">{{tweet["text"]}}</p>
+                <article id="btn_holder">
+                    <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
+                    <button onclick="open_modal(`{{tweet['text']}}`,`{{tweet['id']}}`, `false`)">✏️</button>
+                </article>
+            </section>
+            %end
+            %end
+            %end
+        </div>
     </div>
 
     <section id="aside_right">
@@ -79,7 +82,7 @@
             <h2>Content here</h2>
         </div>
     </section>
-        
+
 </main>
 <div class="modal_container">
     <div class="modal">
@@ -88,20 +91,22 @@
                 <div id="buildMain">
                     <input type="text" name="tweet_id" id="tweet_id_container"></input>
                     <label for="tweet_text">Update your tweet here</label>
-                    <textarea class="" type="text" name="updated_tweet_text" id="update_text" placeholder="Share your thoughts here" data-validate="str" data-min="1" data-max="400"></textarea>
+                    <textarea class="" type="text" name="updated_tweet_text" id="update_text"
+                        placeholder="Share your thoughts here" data-validate="str" data-min="1"
+                        data-max="400"></textarea>
                 </div>
-            <div id="upload_image" class="">
-                <div id="image_update_container">
-                <img src="" id="updated_image" alt="">
-                <input type="checkbox" id="image_checkbox" name="image_check">
-                <label for="image_checkbox">Do you want to delete the image?</label>
+                <div id="upload_image" class="">
+                    <div id="image_update_container">
+                        <img src="" id="updated_image" alt="">
+                        <input type="checkbox" id="image_checkbox" name="image_check">
+                        <label for="image_checkbox">Do you want to delete the image?</label>
+                    </div>
                 </div>
-        </div>
-            <div>
-                <input type="submit" class="updateBTN">Update</input>
-                <div class="cancelBTN">Cancel</div>
+                <div>
+                    <input type="submit" class="updateBTN">Update</input>
+                    <div class="cancelBTN">Cancel</div>
+                </div>
             </div>
-        </div>
         </form>
     </div>
 </div>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,34 +12,34 @@
 <main>
     <div class="signup_wrapper">
         <h1>Create an Account on Fake Tweeter</h1>
-    <!-- <form action="/signUp" method="Post"> -->
-    <form action="/send_email" method="Post">
-        <label>First Name</label>
-        <input type="text" name="user_firstname" placeholder="First Name" id="">
-        <label>Last Name</label>
-        <input type="text" name="user_lastname" placeholder="Last Name" id="">
+        <!-- <form action="/signUp" method="Post"> -->
+        <form action="/signUp" method="Post">
+            <label>First Name</label>
+            <input type="text" name="user_firstname" placeholder="First Name" id="">
+            <label>Last Name</label>
+            <input type="text" name="user_lastname" placeholder="Last Name" id="">
 
-        % if error == "user_email":
+            % if error == "user_email":
             <h1>Please enter a valid email</h1>
-        %end
-        
-        <label>Email Address</label>
-        <input type="text" name="user_email" placeholder="Email" id="">
-        <label>Password</label>
+            %end
 
-        % if error == "user_password":
+            <label>Email Address</label>
+            <input type="text" name="user_email" placeholder="Email" id="">
+            <label>Password</label>
+
+            % if error == "user_password":
             <h1>Please enter a valid password</h1>
-        %end
-        <input type="password" name="user_password" placeholder="Password" id="">
-        <button class="signupBTN">Submit</button>
-    </form>
-</div>
+            %end
+            <input type="password" name="user_password" placeholder="Password" id="">
+            <button class="signupBTN">Submit</button>
+        </form>
+    </div>
 
 
 
-<div class="admin_login_wrapper">
-    <p>Do you have an Admin account? <a href="/admin_login">Log in here</a></p>
-</div>
+    <div class="admin_login_wrapper">
+        <p>Do you have an Admin account? <a href="/admin_login">Log in here</a></p>
+    </div>
 </main>
 
 % include("footer")

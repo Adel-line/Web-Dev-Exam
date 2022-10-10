@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +8,15 @@
     <link rel="stylesheet" href="/app.css">
     <title>{{ get ("title", "Title unavailable")}}</title>
 </head>
+
 <body>
     <div id="navbar">
-    <div class="logo">
-        <img src="/images/one.png" alt="applogo"/>
+        <div class="logo">
+            <h1>FKTweet</h1>
+        </div>
+        <nav>
+            <a href="/global_users">Global Tweets</a>
+            <a href="/tweets_feed">My Tweets</a>
+            <a id="logoutBTN" href="/logout">Log Out</a>
+        </nav>
     </div>
-    <nav>
-        <a href="/global_users">Global Tweets</a>
-        <a href="/tweets_feed">My Tweets</a>
-        <a id="logoutBTN" href="/logout">Log Out</a>
-    </nav>
-</div>

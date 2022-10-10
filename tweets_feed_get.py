@@ -24,4 +24,4 @@ def _():
 
     
         
-    return dict(tweets=g.TWEETS, followees=g.FOLLOWEES, user_id = userSession["user_id"])
+    return dict(tweets=g.TWEETS, user_id = userSession["user_id"])

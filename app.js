@@ -92,7 +92,6 @@ async function delete_tweet(tweet_id){
         alert("It didn't work. Try again")
         return
         }
-    
         document.querySelector(`[id='${tweet_id}']`).remove()
     }
 

@@ -26,12 +26,17 @@ def _():
         #create object
         relation = {
             "followee": followee, 
-            "follower": userSession["user_id"],
             "followee_name": followeeName
         }
-        g.FOLLOWEES.append(relation)
+        for user in g.USERS: 
+            if user["user_id"] == userSession["user_id"]:
+                user["followees"].append(relation)
+                userSession["followees"].append(relation)
+                print(user)
 
-        return dict(followee=followee, follower= userSession["user_id"])
+        encoded_jwt = jwt.encode(userSession, "theSecret", algorithm="HS256")
+        response.set_cookie("jwt", encoded_jwt)
+        return dict(sessoins=userSession)
 
     except Exception as ex : 
 

@@ -26,7 +26,7 @@ def _():
         encoded_jwt = request.get_cookie("jwt")
         userSession = jwt.decode(encoded_jwt, "theSecret", algorithms="HS256")
         
-        return dict(users=g.USERS, sessionID=userSession["user_id"], followees=g.FOLLOWEES, tweets=g.TWEETS) 
+        return dict(users=g.USERS, session=userSession, tweets=g.TWEETS) 
 
     except Exception as ex : 
 

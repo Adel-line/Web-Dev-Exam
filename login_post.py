@@ -20,8 +20,9 @@ def _():
         if user_email == user["user_email"] and user_password == user["user_password"]:
             ###############################
             user_session_id = str(uuid.uuid4())
-            session = {"user_session_id": user_session_id, "user_id": user["user_id"], "user_firstname": user["user_firstname"], "user_lastname": user["user_lastname"], "user_email": user["user_email"], "iat": int(time.time())}
+            session = {"user_session_id": user_session_id, "user_id": user["user_id"], "user_firstname": user["user_firstname"], "user_lastname": user["user_lastname"], "user_email": user["user_email"], "iat": int(time.time()),"followees": user["followees"]}
             g.SESSIONS.append(session)
+            print("Do you load until here?")
 
             ###############################
             encoded_jwt = jwt.encode(session, "theSecret", algorithm="HS256")
