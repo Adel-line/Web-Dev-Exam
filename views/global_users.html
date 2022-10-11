@@ -2,13 +2,10 @@
 
 <main>
     <section id="aside_left">
-        <div id="options">
-            <h2>Content Here</h2>
-        </div>
+        <h1>This is what happens in the world right now</h1>
     </section>
 
     <div class="global_feed">
-        <h1>This is what happens in the world right now</h1>
 
         %for user in users:
 
@@ -21,8 +18,6 @@
         %end
         %end
 
-
-
         <div>
             % if session["user_id"] == user["user_id"]:
             <div id="{{user['user_id']}}">
@@ -33,10 +28,10 @@
                 <p>{{user["user_firstname"]}}</p>
                 %if session["followees"] == [] :
 
-                <form onsubmit="follow_user(); return false " class="">
+                <form onsubmit="follow_user(); return false " class="followF">
                     <input type="text" name="followee_id" class="followee" value="{{user['user_id']}}"></input>
                     <input type="text" name="followee_name" class="followee" value="{{user['user_firstname']}}">
-                    <input type="submit">Follow</input>
+                    <input type="submit" value="Follow"></input>
                 </form>
                 %elif followed=="false":
 
@@ -45,17 +40,15 @@
                 <form onsubmit="follow_user(); return false " class="">
                     <input type="text" name="followee_id" class="followee" value="{{user['user_id']}}"></input>
                     <input type="text" name="followee_name" class="followee" value="{{user['user_firstname']}}">
-                    <input type="submit">Follow</input>
+                    <input type="submit" value="Follow"></input>
                 </form>
-
-
-
 
                 %end
 
             </div>
 
             %end
+
             <div>
                 %for tweet in tweets:
 
@@ -64,9 +57,13 @@
                 %if tweet['image']:
 
                 <section id="${tweet_id}" class="tweet">
-                    <div class="">{{tweet["iat"]}}</div>
-                    <div class="">{{tweet["user_firstname"]}}</div>
-                    <div class="">{{tweet["user_lastname"]}}</div>
+                    <div class="tweet_head">
+                        <div class="">{{tweet["iat"]}}</div>
+                        <div>
+                            <div class="">{{tweet["user_firstname"]}}</div>
+                            <div class="">{{tweet["user_lastname"]}}</div>
+                        </div>
+                    </div>
                     <p class="">{{tweet["text"]}}</p>
                     <img src="/images/{{tweet['image']}}" alt="">
                 </section>
@@ -75,9 +72,13 @@
 
 
                 <section id="${tweet_id}" class="tweet">
-                    <div class="">{{tweet["iat"]}}</div>
-                    <div class="">{{tweet["user_firstname"]}}</div>
-                    <div class="">{{tweet["user_lastname"]}}</div>
+                    <div class="tweet_head">
+                        <div class="">{{tweet["iat"]}}</div>
+                        <div>
+                            <div class="">{{tweet["user_firstname"]}}</div>
+                            <div class="">{{tweet["user_lastname"]}}</div>
+                        </div>
+                    </div>
                     <p class="">{{tweet["text"]}}</p>
                 </section>
                 %end

@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/app.css">
-    <title>{{ get ("title", "Title unavailable")}}</title>
-</head>
+% include("header2", title="SignUp")
 
 <main>
+    <h1 class="title">Create an Account on Fake Tweeter</h1>
     <div class="signup_wrapper">
-        <h1>Create an Account on Fake Tweeter</h1>
         <!-- <form action="/signUp" method="Post"> -->
         <form action="/signUp" method="Post">
             <label>First Name</label>
@@ -35,11 +26,6 @@
         </form>
     </div>
 
-
-
-    <div class="admin_login_wrapper">
-        <p>Do you have an Admin account? <a href="/admin_login">Log in here</a></p>
-    </div>
 </main>
 
 % include("footer")

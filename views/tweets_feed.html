@@ -1,14 +1,9 @@
 % include("header", title="Feed")
 
 <main>
-    <section id="aside_left">
-        <div id="options">
-            <h2>Content Here</h2>
-        </div>
-    </section>
 
     <div class="feed">
-        <h1>This is what happens in the world right now</h1>
+        <h1>This is your personal feed! What are you thinking?</h1>
         <div class="tweet_wrapper">
             <form onsubmit="validate(postTweet); return false " class="">
                 <div>
@@ -31,9 +26,7 @@
 
         % if tweets == []:
         <div>
-            <p>
-                Nothing was posted today
-            </p>
+            <p> Nothing was posted today </p>
         </div>
         % end
 
@@ -46,9 +39,13 @@
             %if tweet['image']:
 
             <section id="{{tweet['id']}}" class="tweet">
-                <div class="">{{tweet["iat"]}}</div>
-                <div class="">{{tweet["user_firstname"]}}</div>
-                <div class="">{{tweet["user_lastname"]}}</div>
+                <div class="tweet_head">
+                    <div class="">{{tweet["iat"]}}</div>
+                    <div>
+                        <div class="">{{tweet["user_firstname"]}}</div>
+                        <div class="">{{tweet["user_lastname"]}}</div>
+                    </div>
+                </div>
                 <p class="">{{tweet["text"]}}</p>
                 <img src="/images/{{tweet['image']}}" alt="">
 
@@ -62,9 +59,13 @@
             %else:
 
             <section id="{{tweet['id']}}" class="tweet">
-                <div class="">{{tweet["iat"]}}</div>
-                <div class="">{{tweet["user_firstname"]}}</div>
-                <div class="">{{tweet["user_lastname"]}}</div>
+                <div class="tweet_head">
+                    <div class="">{{tweet["iat"]}}</div>
+                    <div>
+                        <div class="">{{tweet["user_firstname"]}}</div>
+                        <div class="">{{tweet["user_lastname"]}}</div>
+                    </div>
+                </div>
                 <p class="">{{tweet["text"]}}</p>
                 <article id="btn_holder">
                     <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
@@ -77,19 +78,14 @@
         </div>
     </div>
 
-    <section id="aside_right">
-        <div>
-            <h2>Content here</h2>
-        </div>
-    </section>
-
 </main>
+<!-- MODAL  -->
 <div class="modal_container">
     <div class="modal">
         <form onsubmit="validate(updateTweet); return false" class="">
             <div>
                 <div id="buildMain">
-                    <input type="text" name="tweet_id" id="tweet_id_container"></input>
+                    <input type="text" name="tweet_id" id="tweet_id_container" class="hide_el"></input>
                     <label for="tweet_text">Update your tweet here</label>
                     <textarea class="" type="text" name="updated_tweet_text" id="update_text"
                         placeholder="Share your thoughts here" data-validate="str" data-min="1"
@@ -98,12 +94,14 @@
                 <div id="upload_image" class="">
                     <div id="image_update_container">
                         <img src="" id="updated_image" alt="">
-                        <input type="checkbox" id="image_checkbox" name="image_check">
-                        <label for="image_checkbox">Do you want to delete the image?</label>
+                        <div class="checkSEC">
+                            <input type="checkbox" id="image_checkbox" name="image_check" class="cBOX">
+                            <label for="image_checkbox">Do you want to delete the image?</label>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <input type="submit" class="updateBTN">Update</input>
+                <div class="editBTNS">
+                    <input type="submit" class="updateBTN"></input>
                     <div class="cancelBTN">Cancel</div>
                 </div>
             </div>

@@ -1,42 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/app.css">
-    <title>{{ get ("title", "Title unavailable")}}</title>
-</head>
+% include("header2", title="Feed")
 
 <main>
+    <h1 class="admin_title">
+        Welcome User! Log in here:
+    </h1>
     <div class="login_wrapper">
-    <form action="/login" method="Post">
-        <div>
-        % if error == "user_email":
-            <h1>Please enter a valid email</h1>
-        %end
+        <form action="/login" method="Post">
+            <div>
+                % if error == "user_email":
+                <h1>Please enter a valid email</h1>
+                %end
+                <label>Email</label>
+                <input type="text" name="user_email" placeholder="Email" id="emailinput">
+            </div>
 
-        <label>Email</label>
-        <input type="text" name="user_email" placeholder="Email" id="emailinput">
-    </div>
-    <div>
-        % if error == "user_password":
-            <h1>Please enter a valid password</h1>
-        %end
-
-        <label>Password</label>
-        <input type="password" name="user_password" placeholder="Password" id="passwordinput">
-    </div>
+            <div>
+                % if error == "user_password":
+                <h1>Please enter a valid password</h1>
+                %end
+                <label>Password</label>
+                <input type="password" name="user_password" placeholder="Password" id="passwordinput">
+            </div>
             <button class="loginBTN">LogIn</button>
-    </form>
-</div>
-<div class="admin_login_wrapper">
-    <p>Do you have an Admin account? <a href="/admin_login">Log in here</a></p>
-</div>
-
-<div class="signup2_wrapper">
-    <p>Do you want to make another account? <a href="/signUp">Sign Up here</a></p>
-</div>
+        </form>
+    </div>
 
 </main>
 

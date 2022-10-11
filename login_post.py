@@ -8,13 +8,26 @@ import jwt
 @post("/login")
 
 def _(): 
+    #validation for user email
     if not request.forms.get("user_email"):
+        response.status = 400
         return redirect ("/login?error=user_email")
+
+    if not re.match(g.regex_email, request.forms.get("user_email")):
+        response.status = 400
+        return redirect ("/login?error=user_email")
+
     
     user_email = request.forms.get("user_email")
+    
+     #validation for password
+
+    if not request.forms.get("user_password"):
+        response.status = 401
+        return redirect ("/login?error=user_email")
 
     user_password = request.forms.get("user_password")
-    #validation for password
+   
 
     for user in g.USERS:
         if user_email == user["user_email"] and user_password == user["user_password"]:

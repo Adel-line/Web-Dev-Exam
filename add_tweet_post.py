@@ -21,7 +21,7 @@ def _():
         redirect("/signUp")
 
 
-    print("adadadadadadaa")
+    print("Session is going")
 
     try : 
 
@@ -42,10 +42,14 @@ def _():
             print("adadadadadadaaX2")
 
             tweet_text = request.forms.get("tweet_text")
+            # Fetching and decoding cookies
+
             userSession = jwt.decode(encoded_jwt, "theSecret", algorithms="HS256")
             generated_time = time.ctime(int(time.time()))
             print(userSession["user_session_id"])
             tweet_id = str(uuid.uuid4())
+
+            # Defining Tweet Structure
             tweet = {
             "user_id": userSession["user_id"],
             "id": tweet_id,
@@ -59,13 +63,15 @@ def _():
 
             g.TWEETS.append(tweet)
 
+        # Handling image posting
+
             is_image = "true"
             response.status = 200
             return dict( tweet = tweet, is_image = is_image)
 
 
 
-###########################################################################################
+        ###################################################################################
 
         print("adadadadadadaa")
         is_image = "false"
